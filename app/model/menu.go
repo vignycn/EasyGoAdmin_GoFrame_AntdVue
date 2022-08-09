@@ -59,8 +59,9 @@ type MenuUpdateReq struct {
 	CheckedList []int  `p:"checkedList"`                       // 权限节点
 }
 
+// 菜单删除
 type MenuDeleteReq struct {
-	Ids string `p:"ids" v:"require#请选择需要删除的数据记录"`
+	Ids string `p:"ids" v:"required#请选择需要删除的数据记录"`
 }
 
 // 菜单信息
