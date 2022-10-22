@@ -12,6 +12,7 @@ require (
 	github.com/mojocn/base64Captcha v1.2.2
 	github.com/mssola/user_agent v0.5.3
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
+	github.com/xuri/excelize/v2 v2.6.1
+	golang.org/x/crypto v0.1.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
-	gopkg.in/yaml.v3 v3.0.0-20200605160147-a5ece683394c // indirect
 )

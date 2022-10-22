@@ -34,9 +34,17 @@ import (
 	"easygoadmin/app/model"
 	"easygoadmin/app/utils"
 	"easygoadmin/app/utils/convert"
+	"errors"
+	"fmt"
 	"github.com/gogf/gf/errors/gerror"
 	"github.com/gogf/gf/frame/g"
+	"github.com/gogf/gf/net/ghttp"
 	"github.com/gogf/gf/os/gtime"
+	"github.com/xuri/excelize/v2"
+	"path/filepath"
+	"strconv"
+	"strings"
+	"time"
 )
 
 // 中间件管理服务
@@ -162,4 +170,124 @@ func (s *levelService) Status(req *model.LevelStatusReq, userId int) (int64, err
 		return 0, err
 	}
 	return res, nil
+}
+
+func (s *levelService) ImportExcel(uploadFile *ghttp.UploadFile, userId int) (int, error) {
+	if utils.AppDebug() {
+		return 0, errors.New("演示环境，暂无权限操作")
+	}
+	// 临时存储目录
+	savePath := utils.TempPath() + "/" + gtime.Now().Format("Ymd")
+	// 上传文件
+	fileName, err := uploadFile.Save(savePath, true)
+	if err != nil {
+		return 0, errors.New("文件上传失败")
+	}
+	// 文件绝对路径
+	filePath := filepath.Join(savePath, "/", fileName)
+	// 读取Excel文件
+	file, err := excelize.OpenFile(filePath)
+	if err != nil {
+		return 0, errors.New("excel文件读取失败")
+	}
+	// 读取第一张Sheet表
+	rows, err := file.Rows("Sheet1")
+	if err != nil {
+		return 0, errors.New("excel文件读取失败")
+	}
+	// 计数器
+	totalNum := 0
+	// Excel文件头，此处必须与Excel模板头保持一致
+	excelHeader := []string{"职级名称", "职级状态", "显示顺序"}
+	// 循环遍历读取的数据源
+	for rows.Next() {
+		// Excel列对象
+		item, err2 := rows.Columns()
+		if err2 != nil {
+			return 0, errors.New("excel文件解析异常")
+		}
+		// 读取的列数与Excel头列数不等则跳过读取下一条
+		if len(item) != len(excelHeader) {
+			continue
+		}
+		// 如果是标题栏则跳过
+		if item[1] == "职级状态" {
+			continue
+		}
+		// 职级名称
+		name := item[0]
+		// 职级状态
+		status := 1
+		if item[1] == "正常" {
+			status = 1
+		} else {
+			status = 2
+		}
+		// 显示顺序
+		sort, _ := strconv.Atoi(item[2])
+		// 实例化职级导入对象
+		level := model.Level{
+			Name:       name,
+			Status:     status,
+			Sort:       sort,
+			CreateUser: userId,
+			CreateTime: gtime.Now(),
+			UpdateUser: userId,
+			UpdateTime: gtime.Now(),
+			Mark:       1,
+		}
+		// 插入职级数据
+		if _, err := dao.Level.Insert(level); err != nil {
+			return 0, err
+		}
+		// 计数器+1
+		totalNum++
+	}
+	return totalNum, nil
+}
+
+func (s *levelService) GetExcelList(req *model.LevelQueryReq) (string, error) {
+	query := dao.Level.Clone()
+	query = query.Where("mark=1")
+	if req != nil {
+		// 职级名称查询
+		if req.Name != "" {
+			query = query.Where("name like ?", "%"+req.Name+"%")
+		}
+	}
+	// 查询记录总数
+	_, err := query.Count()
+	if err != nil {
+		return "", err
+	}
+	// 排序
+	query = query.Order("sort asc")
+	// 分页
+	query = query.Page(req.Page, req.Limit)
+	// 对象转换
+	var list []model.Level
+	query.Structs(&list)
+
+	// 循环遍历处理数据源
+	excel := excelize.NewFile()
+	excel.SetSheetRow("Sheet1", "A1", &[]string{"ID", "职级名称", "职级状态", "排序", "创建时间"})
+	for i, v := range list {
+		axis := fmt.Sprintf("A%d", i+2)
+		excel.SetSheetRow("Sheet1", axis, &[]interface{}{
+			v.Id,
+			v.Name,
+			v.Status,
+			v.Sort,
+			v.CreateTime,
+		})
+	}
+	// 定义文件名称
+	fileName := fmt.Sprintf("%s.xlsx", time.Now().Format("20060102150405"))
+	// 设置Excel保存路径
+	filePath := filepath.Join(utils.TempPath(), "/", fileName)
+	err2 := excel.SaveAs(filePath)
+	// 获取文件URL地址
+	fileURL := utils.GetImageUrl(strings.ReplaceAll(filePath, utils.UploadPath(), ""))
+	// 返回结果
+	return fileURL, err2
 }

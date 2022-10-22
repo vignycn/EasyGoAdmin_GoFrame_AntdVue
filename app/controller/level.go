@@ -35,6 +35,7 @@ import (
 	"easygoadmin/app/service"
 	"easygoadmin/app/utils"
 	"easygoadmin/app/utils/common"
+	"fmt"
 	"github.com/gogf/gf/net/ghttp"
 )
 
@@ -177,5 +178,67 @@ func (c *levelCtl) GetLevelList(r *ghttp.Request) {
 		Code: 0,
 		Msg:  "查询成功",
 		Data: list,
+	})
+}
+
+func (c *levelCtl) ImportExcel(r *ghttp.Request) {
+	// 上传文件
+	upFile := r.GetUploadFile("file")
+	if upFile == nil {
+		r.Response.WriteJsonExit(common.JsonResult{
+			Code: -1,
+			Msg:  "上传文件不能为空",
+		})
+	}
+	// 调用文件上传导入方法
+	count, err := service.Level.ImportExcel(upFile, utils.Uid(r))
+	if err != nil {
+		r.Response.WriteJsonExit(common.JsonResult{
+			Code: -1,
+			Msg:  err.Error(),
+		})
+	}
+	// 返回结果
+	r.Response.WriteJsonExit(common.JsonResult{
+		Code: 0,
+		Msg:  fmt.Sprintf("本次共导入【%d】条数据", count),
+	})
+}
+
+func (c *levelCtl) ExportExcel(r *ghttp.Request) {
+	// 请求参数
+	var req *model.LevelQueryReq
+	// 请求验证
+	if err := r.Parse(&req); err != nil {
+		r.Response.WriteJsonExit(common.JsonResult{
+			Code: -1,
+			Msg:  err.Error(),
+		})
+	}
+	// 调用获取列表函数
+	fileURL, err := service.Level.GetExcelList(req)
+	if err != nil {
+		r.Response.WriteJsonExit(common.JsonResult{
+			Code: -1,
+			Msg:  "导出Excel失败",
+		})
+	}
+
+	// 返回结果集
+	r.Response.WriteJsonExit(common.JsonResult{
+		Code: 0,
+		Msg:  "导出成功",
+		Data: fileURL,
+	})
+}
+
+func (c *levelCtl) DownloadExcel(r *ghttp.Request) {
+	// 模板地址
+	fileURL := utils.GetImageUrl("/level.xlsx")
+	// 返回结果
+	r.Response.WriteJsonExit(common.JsonResult{
+		Code: 0,
+		Msg:  "下载成功",
+		Data: fileURL,
 	})
 }

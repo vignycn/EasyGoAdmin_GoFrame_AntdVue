@@ -88,6 +88,9 @@ func init() {
 		group.DELETE("/delete/:ids", controller.Level.Delete)
 		group.PUT("/status", controller.Level.Status)
 		group.GET("/getLevelList", controller.Level.GetLevelList)
+		group.GET("/exportExcel", controller.Level.ExportExcel)
+		group.POST("/importExcel", controller.Level.ImportExcel)
+		group.GET("/downloadExcel", controller.Level.DownloadExcel)
 	})
 
 	/* 岗位路由 */
@@ -178,7 +181,7 @@ func init() {
 		group.DELETE("/delete/:ids", controller.Config.Delete)
 	})
 
-	/* 字典项管理 */
+	/* 配置项管理 */
 	s.Group("configdata", func(group *ghttp.RouterGroup) {
 		group.GET("/list", controller.ConfigData.List)
 		group.POST("/add", controller.ConfigData.Add)
