@@ -1,11 +1,11 @@
 // +----------------------------------------------------------------------
 // | EasyGoAdmin敏捷开发框架 [ 赋能开发者，助力企业发展 ]
 // +----------------------------------------------------------------------
-// | 版权所有 2019~2022 深圳EasyGoAdmin研发中心
+// | 版权所有 2019~2023 深圳EasyGoAdmin研发中心
 // +----------------------------------------------------------------------
 // | Licensed LGPL-3.0 EasyGoAdmin并不是自由软件，未经许可禁止去掉相关版权
 // +----------------------------------------------------------------------
-// | 官方网站: http://www.easygoadmin.vip
+// | 官方网站: https://www.easygoadmin.vip
 // +----------------------------------------------------------------------
 // | Author: @半城风雨 团队荣誉出品
 // +----------------------------------------------------------------------
@@ -138,14 +138,6 @@ func (c *exampleCtl) Delete(r *ghttp.Request) {
 	})
 }
 
-
-
-
-
-
-
-
-
 func (c *exampleCtl) Status(r *ghttp.Request) {
 	var req *model.ExampleStatusReq
 	if err := r.Parse(&req); err != nil {
@@ -168,10 +160,6 @@ func (c *exampleCtl) Status(r *ghttp.Request) {
 	})
 }
 
-
-
-
-
 func (c *exampleCtl) IsVip(r *ghttp.Request) {
 	var req *model.ExampleIsVipReq
 	if err := r.Parse(&req); err != nil {
@@ -193,7 +181,3 @@ func (c *exampleCtl) IsVip(r *ghttp.Request) {
 		Msg:  "设置成功",
 	})
 }
-
-
-
-

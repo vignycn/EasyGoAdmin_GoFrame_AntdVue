@@ -1,5 +1,5 @@
 ## 📚 项目介绍
-一款 Go 语言基于GoFrame、Vue、AntDesign、MySQL等框架精心打造的一款模块化、插件化、高性能的前后端分离架构敏捷开发框架，可快速搭建前后端分离后台管理系统，本着简化开发、提升开发效率的初衷，框架自研了一套个性化的组件，实现了可插拔的组件式开发方式，同时为了敏捷快速开发，框架特地集成了代码生成器，完全自主研发了自定义GO后端服务模板和前端Vue自定义模板，可以根据已建好的表结构，可以快速的一键生成整个模块的所有代码和增删改查等等功能业务，真正实现了低代码开发方式，极大的节省了人力成本的同时提高了开发效率，缩短了研发周期，是一款真正意义上实现组件化、可插拔式的敏捷开发框架。
+一款 Go 语言基于GoFrame、Vue3.x、AntDesign、MySQL等框架精心打造的一款模块化、插件化、高性能的前后端分离架构敏捷开发框架，可快速搭建前后端分离后台管理系统，本着简化开发、提升开发效率的初衷，框架自研了一套个性化的组件，实现了可插拔的组件式开发方式，同时为了敏捷快速开发，框架特地集成了代码生成器，完全自主研发了自定义GO后端服务模板和前端Vue自定义模板，可以根据已建好的表结构，可以快速的一键生成整个模块的所有代码和增删改查等等功能业务，真正实现了低代码开发方式，极大的节省了人力成本的同时提高了开发效率，缩短了研发周期，是一款真正意义上实现组件化、可插拔式的敏捷开发框架。
 ## 🍻 项目特点
 
 + 模块化、松耦合
@@ -32,7 +32,7 @@
 + 会员管理：对各终端注册的会员进行统一的查询与管理的模块。
 + 网站配置：对配置管理模块的数据源动态解析与统一维护管理的模块。
 + 通知公告：系统通知公告信息发布维护。
-+ 代码生成：一键生成模块CRUD的功能，包括后端Go和前端Vue等相关代码。
++ 代码生成：一键生成模块CRUD的功能，包括后端和前端等相关代码。
 + 案例演示：常规代码生成器一键生成后的演示案例。
 
 ## 👷 软件信息
@@ -40,7 +40,7 @@
 * 软件作者：@半城风雨 团队荣誉出品
 * 软件出处：深圳EasyGoAdmin研发中心
 * 软件协议：LGPL-3.0
-* 官网网址：[http://www.easygoadmin.vip](http://www.easygoadmin.vip)
+* 官网网址：[https://www.easygoadmin.vip](https://www.easygoadmin.vip)
 * 文档网址：[http://docs.goframe.antdvue.easygoadmin.vip](http://docs.goframe.antdvue.easygoadmin.vip)
 
 ## 🎨 系统演示
@@ -52,20 +52,27 @@
 admin | 123456| 演示环境无法进行修改删除操作
 
 ## 📌 版本说明
-版本名称 | 版本说明 | 版本地址
----|---|---
-GoFrame+Layui混编版 | 采用GoFrame、Layui等框架研发 | https://gitee.com/easygoadmin/EasyGoAdmin_GoFrame_Layui
-Beego+Layui混编版 | 采用Beego、Layui等框架研发 | https://gitee.com/easygoadmin/EasyGoAdmin_Beego_Layui
-Gin+Layui混编版 | 采用Gin、Layui等框架研发 | https://gitee.com/easygoadmin/EasyGoAdmin_Gin_Layui
-Iris+Layui混编版 | 采用Iris、Layui等框架研发 | https://gitee.com/easygoadmin/EasyGoAdmin_Iris_Layui
+版本名称 | 版本说明                                | 版本地址
+---|-------------------------------------|---
+GoFrame+Layui混编版 | 采用GoFrame、Layui等框架研发                | https://gitee.com/easygoadmin/EasyGoAdmin_GoFrame_Layui
+Beego+Layui混编版 | 采用Beego、Layui等框架研发                  | https://gitee.com/easygoadmin/EasyGoAdmin_Beego_Layui
+Gin+Layui混编版 | 采用Gin、Layui等框架研发                    | https://gitee.com/easygoadmin/EasyGoAdmin_Gin_Layui
+Iris+Layui混编版 | 采用Iris、Layui等框架研发                   | https://gitee.com/easygoadmin/EasyGoAdmin_Iris_Layui
+Echo+Layui混编版 | 采用Echo、Layui等框架研发                   | https://gitee.com/easygoadmin/EasyGoAdmin_Echo_Layui
+Revel+Layui混编版 | 采用Revel、Layui等框架研发                  | https://gitee.com/easygoadmin/EasyGoAdmin_Revel_Layui
 GoFrame+EleVue前后端分离版 | 采用GoFrame、Vue、ElementUI等框架研发前后端分离版本 | https://gitee.com/easygoadmin/EasyGoAdmin_GoFrame_EleVue
-Beego+EleVue前后端分离版 | 采用Beego、Vue、ElementUI等框架研发前后端分离版本 | https://gitee.com/easygoadmin/EasyGoAdmin_Beego_EleVue
-Gin+EleVue前后端分离版 | 采用Gin、Vue、ElementUI等框架研发前后端分离版本 | https://gitee.com/easygoadmin/EasyGoAdmin_Gin_EleVue
-Iris+EleVue前后端分离版 | 采用Iris、Vue、ElementUI等框架研发前后端分离版本 | https://gitee.com/easygoadmin/EasyGoAdmin_Iris_EleVue
+Beego+EleVue前后端分离版 | 采用Beego、Vue、ElementUI等框架研发前后端分离版本   | https://gitee.com/easygoadmin/EasyGoAdmin_Beego_EleVue
+Gin+EleVue前后端分离版 | 采用Gin、Vue、ElementUI等框架研发前后端分离版本     | https://gitee.com/easygoadmin/EasyGoAdmin_Gin_EleVue
+Iris+EleVue前后端分离版 | 采用Iris、Vue、ElementUI等框架研发前后端分离版本    | https://gitee.com/easygoadmin/EasyGoAdmin_Iris_EleVue
+Echo+EleVue前后端分离版 | 采用Echo、Vue、ElementUI等框架研发前后端分离版本    | https://gitee.com/easygoadmin/EasyGoAdmin_Echo_EleVue
+Revel+EleVue前后端分离版 | 采用Revel、Vue、ElementUI等框架研发前后端分离版本   | https://gitee.com/easygoadmin/EasyGoAdmin_Revel_EleVue
 GoFrame+AntdVue前后端分离版 | 采用GoFrame、Vue、AntDesign等框架研发前后端分离版本 | https://gitee.com/easygoadmin/EasyGoAdmin_GoFrame_AntdVue
-Beego+AntdVue前后端分离版 | 采用Beego、Vue、AntDesign等框架研发前后端分离版本 | https://gitee.com/easygoadmin/EasyGoAdmin_Beego_AntdVue
-Gin+AntdVue前后端分离版 | 采用Gin、Vue、AntDesign等框架研发前后端分离版本 | https://gitee.com/easygoadmin/EasyGoAdmin_Gin_AntdVue
-Iris+AntdVue前后端分离版 | 采用Iris、Vue、AntDesign等框架研发前后端分离版本 | https://gitee.com/easygoadmin/EasyGoAdmin_Iris_AntdVue
+Beego+AntdVue前后端分离版 | 采用Beego、Vue、AntDesign等框架研发前后端分离版本   | https://gitee.com/easygoadmin/EasyGoAdmin_Beego_AntdVue
+Gin+AntdVue前后端分离版 | 采用Gin、Vue、AntDesign等框架研发前后端分离版本     | https://gitee.com/easygoadmin/EasyGoAdmin_Gin_AntdVue
+Iris+AntdVue前后端分离版 | 采用Iris、Vue、AntDesign等框架研发前后端分离版本    | https://gitee.com/easygoadmin/EasyGoAdmin_Iris_AntdVue
+Echo+AntdVue前后端分离版 | 采用Echo、Vue、AntDesign等框架研发前后端分离版本    | https://gitee.com/easygoadmin/EasyGoAdmin_Echo_AntdVue
+Revel+AntdVue前后端分离版 | 采用Revel、Vue、AntDesign等框架研发前后端分离版本   | https://gitee.com/easygoadmin/EasyGoAdmin_Revel_AntdVue
+
 
 ## 🍪 项目结构
 
@@ -142,7 +149,7 @@ Iris+AntdVue前后端分离版 | 采用Iris、Vue、AntDesign等框架研发前�
 ![效果图](./public/uploads/demo/24.png)
 
 ## ✨  特别鸣谢
-感谢[GoFrame](https://goframe.org/#all-updates)、[VueJs](https://cn.vuejs.org/)、[AntDesign](https://2x.antdv.com/docs/vue/introduce-cn/)等优秀开源项目。
+感谢[GoFrame](https://goframe.org/#all-updates)、[Vue](https://cn.vuejs.org/)、[AntDesign](https://2x.antdv.com/docs/vue/introduce-cn/)等优秀开源项目。
 
 ## 📚 版权信息
 
@@ -152,6 +159,6 @@ Iris+AntdVue前后端分离版 | 采用Iris、Vue、AntDesign等框架研发前�
 
 本项目包含的第三方源码和二进制文件之版权信息另行标注。
 
-版权所有Copyright © 2019~2022 [easygoadmin.vip](http://www.easygoadmin.vip) All rights reserved。
+版权所有Copyright © 2019~2023 [easygoadmin.vip](https://www.easygoadmin.vip) All rights reserved。
 
 更多细节参阅 [LICENSE](LICENSE)
